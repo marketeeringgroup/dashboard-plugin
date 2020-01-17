@@ -22,7 +22,7 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Plugin_Name
+ * @package    Marketeering_Group_Dashboard
  */
 
 // If uninstall not called from WordPress, then exit.
