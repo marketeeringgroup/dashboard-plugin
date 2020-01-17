@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              https://marketeeringgroup.com
  * @since             1.0.0
  * @package           Marketeering_Group_Dashboard
  *
  * @wordpress-plugin
  * Plugin Name:       Marketeering Group Dashboard
  * Plugin URI:        https://github.com/melmai/marketeering-group-dashboard
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plugin modifies the WordPress backend for client users with the Editor role.
  * Version:           1.0.0
- * Author:            Your Name or Your Company
- * Author URI:        http://example.com/
+ * Author:            Marketeering Group
+ * Author URI:        https://marketeeringgroup.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       marketeering-group-dashboard
