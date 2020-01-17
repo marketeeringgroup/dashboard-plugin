@@ -159,6 +159,7 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_editor_capability' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'hide_menus' );
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'remove_dashboard_meta' );
+		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'add_custom_dashboard_widgets' );
 
 	}
 
