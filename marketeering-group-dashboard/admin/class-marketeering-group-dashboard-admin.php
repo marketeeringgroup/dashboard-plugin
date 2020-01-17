@@ -100,4 +100,10 @@ class Marketeering_Group_Dashboard_Admin {
 
 	}
 
+	public function add_editor_capability() {
+		// Gets the editor role object and adds appearance menu
+		$role = get_role( 'editor' );
+		$role->add_cap( 'edit_theme_options' );
+	}
+
 }
