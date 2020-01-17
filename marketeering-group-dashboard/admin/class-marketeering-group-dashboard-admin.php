@@ -101,9 +101,22 @@ class Marketeering_Group_Dashboard_Admin {
 	}
 
 	public function add_editor_capability() {
-		// Gets the editor role object and adds appearance menu
+		/**
+		 * Adds access to the appearance menu for the Editor role
+		 */
 		$role = get_role( 'editor' );
 		$role->add_cap( 'edit_theme_options' );
 	}
+
+	public function hide_menu() {
+		/**
+		 * This function hides Themes from the Appearance menu
+		 */
+		if (current_user_can('editor')) {
+			remove_submenu_page( 'themes.php', 'themes.php' );
+		}
+	}
+	
+
 
 }

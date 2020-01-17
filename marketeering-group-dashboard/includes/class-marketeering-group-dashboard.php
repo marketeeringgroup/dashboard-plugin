@@ -157,6 +157,7 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_editor_capability' );
+		$this->loader->add_action('admin_head', $plugin_admin, 'hide_menu' );
 
 	}
 
