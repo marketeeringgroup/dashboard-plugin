@@ -108,15 +108,20 @@ class Marketeering_Group_Dashboard_Admin {
 		$role->add_cap( 'edit_theme_options' );
 	}
 
-	public function hide_menu() {
+	public function hide_menus() {
 		/**
-		 * This function hides Themes from the Appearance menu
+		 * Hides unnecessary menu options for Editors
 		 */
-		if (current_user_can('editor')) {
+		if ( current_user_can('editor') ) {
+
+			// Hide main sidebar menu items
+			remove_menu_page('tools.php');
+
+			// Hide main sidebar submenu items
 			remove_submenu_page( 'themes.php', 'themes.php' );
+			remove_submenu_page('index.php', 'simple_history_page');
+			
 		}
 	}
-	
-
 
 }
