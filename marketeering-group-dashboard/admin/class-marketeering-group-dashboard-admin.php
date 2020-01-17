@@ -105,7 +105,9 @@ class Marketeering_Group_Dashboard_Admin {
 		 * Adds access to the appearance menu for the Editor role
 		 */
 		$role = get_role( 'editor' );
-		$role->add_cap( 'edit_theme_options' );
+		if (!$role->capabilities["edit_theme_options"]) {
+			$role->add_cap('edit_theme_options');
+		}
 	}
 
 	public function hide_menus() {
@@ -119,7 +121,7 @@ class Marketeering_Group_Dashboard_Admin {
 
 			// Hide main sidebar submenu items
 			remove_submenu_page( 'themes.php', 'themes.php' );
-			remove_submenu_page('index.php', 'simple_history_page');
+			remove_submenu_page( 'index.php', 'simple_history_page' );
 			
 		}
 	}
