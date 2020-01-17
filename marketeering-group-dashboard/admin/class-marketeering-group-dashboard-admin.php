@@ -126,4 +126,17 @@ class Marketeering_Group_Dashboard_Admin {
 		}
 	}
 
+	function remove_dashboard_meta() {
+		/**
+		 * Removes unnecessary dashboard widgets
+		 */
+		if ( ! current_user_can( 'manage_options' ) ) {
+			remove_meta_box( 'dashboard_activity', 'dashboard', 'normal'); 			// Activity
+			remove_meta_box( 'dashboard_primary', 'dashboard', 'normal' ); 			// WordPress Events & News
+			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' ); 		// At a Glance
+			remove_meta_box( 'wpe_dify_news_feed', 'dashboard', 'normal' ); 		// WP Engine Widget
+			remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' ); 	// Yoast SEO Widget
+		}
+	}
+
 }
