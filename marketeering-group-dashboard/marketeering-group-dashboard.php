@@ -13,8 +13,8 @@
  * @package           Marketeering_Group_Dashboard
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress Plugin Boilerplate
- * Plugin URI:        http://example.com/marketeering-group-dashboard-uri/
+ * Plugin Name:       Marketeering Group Dashboard
+ * Plugin URI:        https://github.com/melmai/marketeering-group-dashboard
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            Your Name or Your Company
