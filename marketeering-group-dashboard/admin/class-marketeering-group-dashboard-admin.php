@@ -105,9 +105,8 @@ class Marketeering_Group_Dashboard_Admin {
 		 * Adds access to the appearance menu for the Editor role
 		 */
 		$role = get_role( 'editor' );
-		//if (!$role->capabilities["edit_theme_options"]) {
-			$role->add_cap('edit_theme_options');
-		//}
+		if ($role->capabilities["edit_theme_options"]) return;
+		$role->add_cap('edit_theme_options');
 	}
 
 	public function hide_menus() {
