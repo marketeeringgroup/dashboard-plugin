@@ -105,9 +105,9 @@ class Marketeering_Group_Dashboard_Admin {
 		 * Adds access to the appearance menu for the Editor role
 		 */
 		$role = get_role( 'editor' );
-		if (!$role->capabilities["edit_theme_options"]) {
+		//if (!$role->capabilities["edit_theme_options"]) {
 			$role->add_cap('edit_theme_options');
-		}
+		//}
 	}
 
 	public function hide_menus() {
@@ -132,7 +132,7 @@ class Marketeering_Group_Dashboard_Admin {
 		 */
 		if ( ! current_user_can( 'manage_options' ) ) {
 			remove_meta_box( 'dashboard_activity', 'dashboard', 'normal'); 			// Activity
-			remove_meta_box( 'dashboard_primary', 'dashboard', 'normal' ); 			// WordPress Events & News
+			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' ); 			// WordPress Events & News
 			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' ); 		// At a Glance
 			remove_meta_box( 'wpe_dify_news_feed', 'dashboard', 'normal' ); 		// WP Engine Widget
 			remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' ); 	// Yoast SEO Widget
