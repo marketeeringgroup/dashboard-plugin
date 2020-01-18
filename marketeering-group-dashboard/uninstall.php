@@ -29,3 +29,14 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+// function remove_editor_capability() {
+// 	/**
+// 	 * Removes access to the appearance menu for the Editor role
+// 	 */
+	$role = get_role( 'editor' );
+	if ($role->capabilities["edit_theme_options"]) {
+		$role->remove_cap('edit_theme_options');
+	}
+// }
+// add_action('init', 'remove_editor_capability', 11);
