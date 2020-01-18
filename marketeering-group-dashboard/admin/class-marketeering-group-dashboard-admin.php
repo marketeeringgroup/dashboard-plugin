@@ -153,4 +153,19 @@ class Marketeering_Group_Dashboard_Admin {
 			echo "<h3>Welcome to your WordPress Dashboard!</h3><p>Here you can add and edit pages, blog posts and menus. Check out the links below for a few video tutorials on working in WordPress.</p><p>If you ever need assistance with edits, don't hesitate to contact the Marketeering Group Development Team! Simply send a message to <a href='mailto:siteupdates@markteeringgroup.com'>siteupdates@markteeringgroup.com</a>, and we'll be happy to help you out!</p><h4>Tutorial Links</h4><ul><li><strong>Writing Blog Posts in WordPress:</strong> <a href='https://www.youtube.com/watch?v=rld_XRvAOfs' target='_blank'>WordPress Gutenberg Editor - Quick Start Tutorial</a></li><li><strong>Editing Pages with WPBakery Page Builder:</strong> <a href='https://www.youtube.com/watch?v=Vp7TaaJZKeU' target='_blank'>WPBakery Page Builder Beginners Guide</a></li><li><strong>Adding Links to the Menu:</strong> <a href='https://www.youtube.com/watch?v=ZzNwCHG_VWk' target='_blank'>How to Add Navigation Menu in WordPress</a></li></ul>";
 		}
 	} 
+
+	public function register_settings() {
+		add_option( 'myplugin_option_name', 'This is my option value.' );
+		register_setting( 'myplugin_options_group', 'myplugin_option_name', 'myplugin_callback' );
+	}
+
+	public function register_options_page() {
+		add_options_page( 'Marketeering Group', 'MG Dashboard', 'manage_options', 'marketeering-group', 'myplugin_options_page' );
+		
+		function myplugin_options_page() {
+			// the settings page view
+			include 'partials/marketeering-group-dashboard-admin-display.php';
+		}
+	}
+
 }

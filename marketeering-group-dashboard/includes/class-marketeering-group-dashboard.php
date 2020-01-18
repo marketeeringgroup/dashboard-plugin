@@ -154,12 +154,19 @@ class Marketeering_Group_Dashboard {
 
 		$plugin_admin = new Marketeering_Group_Dashboard_Admin( $this->get_marketeering_group_dashboard(), $this->get_version() );
 
+		// enqueue scripts and styles
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		// modify editor capabilities and views
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_editor_capability' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'hide_menus' );
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'remove_dashboard_meta' );
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'add_custom_dashboard_widgets' );
+
+		// create settings page
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_options_page' );
 
 	}
 
