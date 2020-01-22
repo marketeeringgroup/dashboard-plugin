@@ -169,7 +169,7 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_options_page' );
 
 		// modify WordPress logo if option is set
-		if ( get_option( 'login_logo' )) {
+		if ( get_option('login_logo_url' )) {
 			$this->loader->add_action('login_enqueue_scripts', $plugin_admin, 'custom_login_logo' );
 		}
 

@@ -188,8 +188,8 @@ class Marketeering_Group_Dashboard_Admin
 		 * 		array 		$args = array() )
 		 */
 
-		add_option('login_logo');
-		register_setting('mgdashboard_options_group', 'login_logo');
+		add_option('login_logo_url');
+		register_setting('mgdashboard_options_group', 'login_logo_url');
 	}
 
 	public function register_options_page()
@@ -222,7 +222,7 @@ class Marketeering_Group_Dashboard_Admin
 		<style type="text/css">
 			#login h1 a,
 			.login h1 a {
-				background-image: url(<?php echo get_option('login_logo'); ?>);
+				background-image: url(<?php echo get_option('login_logo_url'); ?>);
 				padding-bottom: 30px;
 				width: 100%;
 				background-size: contain;

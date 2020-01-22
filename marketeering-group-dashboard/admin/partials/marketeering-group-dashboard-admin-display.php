@@ -22,8 +22,8 @@
         <p>Add the URL of the logo to be used on the WordPress login screen.</p>
         <table>
             <tr valign="top">
-                <th scope="row"><label for="login_logo">Login Logo URL</label></th>
-                <td><input type="text" id="login_logo" name="login_logo" value="<?php echo get_option('login_logo'); ?>" /></td>
+                <th scope="row"><label for="login_logo_url">Login Logo URL</label></th>
+                <td><input type="text" id="login_logo_url" name="login_logo_url" value="<?php echo get_option('login_logo_url'); ?>" /></td>
             </tr>
         </table>
         <?php submit_button(); ?>
