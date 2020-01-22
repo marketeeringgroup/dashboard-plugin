@@ -113,10 +113,12 @@ class Marketeering_Group_Dashboard_Admin {
 		/**
 		 * Hides unnecessary menu options for Editors
 		 */
+
 		if ( current_user_can('editor') ) {
 
 			// Hide main sidebar menu items
 			remove_menu_page('tools.php');
+			remove_menu_page('vc-welcome');
 
 			// Hide main sidebar submenu items
 			remove_submenu_page( 'themes.php', 'themes.php' );
