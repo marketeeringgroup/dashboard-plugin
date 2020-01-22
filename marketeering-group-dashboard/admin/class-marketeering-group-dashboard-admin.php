@@ -164,14 +164,14 @@ class Marketeering_Group_Dashboard_Admin {
 	} 
 
 	public function register_settings() {
-		add_option( 'myplugin_option_name', 'This is my option value.' );
-		register_setting( 'myplugin_options_group', 'myplugin_option_name', 'myplugin_callback' );
+		add_option( 'mgdashboard_option_name', 'This is my option value.' );
+		register_setting( 'mgdashboard_options_group', 'mgdashboard_option_name', 'mgdashboard_callback' );
 	}
 
 	public function register_options_page() {
-		add_options_page( 'Marketeering Group', 'MG Dashboard', 'manage_options', 'marketeering-group', 'myplugin_options_page' );
+		add_options_page( 'Marketeering Group', 'MG Dashboard', 'manage_options', 'marketeering-group', 'mgdashboard_options_page' );
 		
-		function myplugin_options_page() {
+		function mgdashboard_options_page() {
 			// the settings page view
 			include 'partials/marketeering-group-dashboard-admin-display.php';
 		}
