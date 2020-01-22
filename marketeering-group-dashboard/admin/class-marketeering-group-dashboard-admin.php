@@ -129,13 +129,20 @@ class Marketeering_Group_Dashboard_Admin {
 		/**
 		 * Removes unnecessary dashboard widgets
 		 */
+
+		// removes widgets for all users
+		remove_meta_box('dashboard_activity', 'dashboard', 'normal'); 					// Activity
+		remove_meta_box('dashboard_primary', 'dashboard', 'side'); 						// WP Events & News
+		remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); 					// At a Glance
+		remove_meta_box('wpe_dify_news_feed', 'dashboard', 'normal'); 					// WP Engine 
+		remove_meta_box('wpseo-dashboard-overview', 'dashboard', 'normal'); 			// Yoast SEO 
+		remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); 					// Quick Press 
+		
+		// removes widgets for non-admin users
 		if ( ! current_user_can( 'manage_options' ) ) {
-			remove_meta_box( 'dashboard_activity', 'dashboard', 'normal'); 					// Activity
-			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' ); 					// WordPress Events & News
-			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' ); 				// At a Glance
-			remove_meta_box( 'wpe_dify_news_feed', 'dashboard', 'normal' ); 				// WP Engine Widget
-			remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' ); 			// Yoast SEO Widget
-			remove_meta_box( 'simple_history_dashboard_widget', 'dashboard', 'normal' ); 	// Simple History
+
+			remove_meta_box('simple_history_dashboard_widget', 'dashboard', 'normal'); 	// Simple History
+			
 		}
 	}
 
