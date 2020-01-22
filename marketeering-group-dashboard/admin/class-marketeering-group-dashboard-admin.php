@@ -20,7 +20,8 @@
  * @subpackage Marketeering_Group_Dashboard/admin
  * @author     Your Name <email@example.com>
  */
-class Marketeering_Group_Dashboard_Admin {
+class Marketeering_Group_Dashboard_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,11 @@ class Marketeering_Group_Dashboard_Admin {
 	 * @param      string    $marketeering_group_dashboard       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $marketeering_group_dashboard, $version ) {
+	public function __construct($marketeering_group_dashboard, $version)
+	{
 
 		$this->marketeering_group_dashboard = $marketeering_group_dashboard;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,7 +60,8 @@ class Marketeering_Group_Dashboard_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -73,8 +75,7 @@ class Marketeering_Group_Dashboard_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->marketeering_group_dashboard, plugin_dir_url( __FILE__ ) . 'css/marketeering-group-dashboard-admin.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->marketeering_group_dashboard, plugin_dir_url(__FILE__) . 'css/marketeering-group-dashboard-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,7 +83,8 @@ class Marketeering_Group_Dashboard_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -96,38 +98,39 @@ class Marketeering_Group_Dashboard_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->marketeering_group_dashboard, plugin_dir_url( __FILE__ ) . 'js/marketeering-group-dashboard-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script($this->marketeering_group_dashboard, plugin_dir_url(__FILE__) . 'js/marketeering-group-dashboard-admin.js', array('jquery'), $this->version, false);
 	}
 
-	public function add_editor_capability() {
+	public function add_editor_capability()
+	{
 		/**
 		 * Adds access to the appearance menu for the Editor role
 		 */
-		$role = get_role( 'editor' );
+		$role = get_role('editor');
 		if ($role->capabilities["edit_theme_options"]) return;
 		$role->add_cap('edit_theme_options');
 	}
 
-	public function hide_menus() {
+	public function hide_menus()
+	{
 		/**
 		 * Hides unnecessary menu options for Editors
 		 */
 
-		if ( current_user_can('editor') ) {
+		if (current_user_can('editor')) {
 
 			// Hide main sidebar menu items
 			remove_menu_page('tools.php');
 			remove_menu_page('vc-welcome');
 
 			// Hide main sidebar submenu items
-			remove_submenu_page( 'themes.php', 'themes.php' );
-			remove_submenu_page( 'index.php', 'simple_history_page' );
-			
+			remove_submenu_page('themes.php', 'themes.php');
+			remove_submenu_page('index.php', 'simple_history_page');
 		}
 	}
 
-	public function remove_dashboard_meta() {
+	public function remove_dashboard_meta()
+	{
 		/**
 		 * Removes unnecessary dashboard widgets
 		 */
@@ -139,16 +142,17 @@ class Marketeering_Group_Dashboard_Admin {
 		remove_meta_box('wpe_dify_news_feed', 'dashboard', 'normal'); 					// WP Engine 
 		remove_meta_box('wpseo-dashboard-overview', 'dashboard', 'normal'); 			// Yoast SEO 
 		remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); 					// Quick Press 
-		
+
 		// removes widgets for non-admin users
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if (!current_user_can('manage_options')) {
 
 			remove_meta_box('simple_history_dashboard_widget', 'dashboard', 'normal'); 	// Simple History
-			
+
 		}
 	}
 
-	public function add_custom_dashboard_widgets() {
+	public function add_custom_dashboard_widgets()
+	{
 		/**
 		 * Adds Marketeering Group customer support widget
 		 */
@@ -158,8 +162,72 @@ class Marketeering_Group_Dashboard_Admin {
 			'custom_dashboard_widget_content' 	// Display function.
 		);
 
-		function custom_dashboard_widget_content() {
+		function custom_dashboard_widget_content()
+		{
+
 			echo "<h3>Welcome to your WordPress Dashboard!</h3><p>Here you can add and edit pages, blog posts and menus. Check out the links below for a few video tutorials on working in WordPress.</p><p>If you ever need assistance with edits, don't hesitate to contact the Marketeering Group Development Team! Simply send a message to <a href='mailto:siteupdates@markteeringgroup.com'>siteupdates@markteeringgroup.com</a>, and we'll be happy to help you out!</p><h4>Tutorial Links</h4><ul><li><strong>Writing Blog Posts in WordPress:</strong> <a href='https://www.youtube.com/watch?v=rld_XRvAOfs' target='_blank'>WordPress Gutenberg Editor - Quick Start Tutorial</a></li><li><strong>Editing Pages with WPBakery Page Builder:</strong> <a href='https://www.youtube.com/watch?v=Vp7TaaJZKeU' target='_blank'>WPBakery Page Builder Beginners Guide</a></li><li><strong>Adding Links to the Menu:</strong> <a href='https://www.youtube.com/watch?v=ZzNwCHG_VWk' target='_blank'>How to Add Navigation Menu in WordPress</a></li></ul>";
 		}
-	} 
+	}
+
+	public function register_settings()
+	{
+		/**
+		 * creates options for settings page
+		 * 
+		 * adds a new option
+		 * add_option( 
+		 * 		string 		$option_name, 
+		 * 		mixed 		$value = '', 
+		 * 		string 		$deprecated = '', 
+		 * 		string|bool $autoload = 'yes' )
+		 * 
+		 * defines a setting to create an entry in the wp_options table
+		 * register_setting( 
+		 * 		string 		$option_group, 
+		 * 		string 		$option_name, 
+		 * 		array 		$args = array() )
+		 */
+
+		add_option('login_logo_url');
+		register_setting('mgdashboard_options_group', 'login_logo_url');
+	}
+
+	public function register_options_page()
+	{
+		/**
+		 * Creates settings page view
+		 * 
+		 * Add submenu page to the Settings main menu.
+		 * add_options_page( 
+		 * 		string 		$page_title, 
+		 * 		string 		$menu_title, 
+		 * 		string 		$capability, 
+		 * 		string 		$menu_slug, 
+		 * 		callable 	$function = '', 
+		 * 		int 		$position = null )
+		 */
+
+		add_options_page('Marketeering Group', 'MG Dashboard', 'manage_options', 'marketeering-group', 'mgdashboard_options_page');
+
+		function mgdashboard_options_page()
+		{
+
+			// the settings page view
+			include 'partials/marketeering-group-dashboard-admin-display.php';
+		}
+	}
+
+	public function custom_login_logo()
+	{ ?>
+		<style type="text/css">
+			#login h1 a,
+			.login h1 a {
+				background-image: url(<?php echo get_option('login_logo_url'); ?>);
+				padding-bottom: 30px;
+				width: 100%;
+				background-size: contain;
+			}
+		</style>
+<?php
+	}
 }
