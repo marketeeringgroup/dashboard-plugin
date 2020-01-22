@@ -19,12 +19,11 @@
     <h1>Marketeering Group Dashboard Options</h1>
     <form method="post" action="options.php">
         <?php settings_fields('mgdashboard_options_group'); ?>
-        <h3>This is my option</h3>
-        <p>Some text here.</p>
+        <p>Add the URL of the logo to be used on the WordPress login screen.</p>
         <table>
             <tr valign="top">
-                <th scope="row"><label for="mgdashboard_option_name">Label</label></th>
-                <td><input type="text" id="mgdashboard_option_name" name="mgdashboard_option_name" value="<?php echo get_option('mgdashboard_option_name'); ?>" /></td>
+                <th scope="row"><label for="login_logo">Login Logo URL</label></th>
+                <td><input type="text" id="login_logo" name="login_logo" value="<?php echo get_option('login_logo'); ?>" /></td>
             </tr>
         </table>
         <?php submit_button(); ?>
