@@ -23,7 +23,11 @@
         <table>
             <tr valign="top">
                 <th scope="row"><label for="login_logo_url">Login Logo URL</label></th>
-                <td><input type="text" id="login_logo_url" name="login_logo_url" value="<?php echo get_option('login_logo_url'); ?>" /></td>
+                <!-- <td><input type="text" id="login_logo_url" name="login_logo_url" value="<?php //echo get_option('login_logo_url'); 
+                                                                                                ?>" /></td> -->
+
+                <td><input id="login_logo_url" type="text" name="login_logo_url" value="<?php echo get_option('login_logo_url'); ?>" />
+                <input id="upload_image_button" type="button" class="button-primary" value="Insert Image" /></td>
             </tr>
         </table>
         <?php submit_button(); ?>
