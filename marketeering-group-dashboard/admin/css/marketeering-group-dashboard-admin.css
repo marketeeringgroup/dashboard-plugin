@@ -2,3 +2,14 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+ #login_logo_url {
+     min-width:300px;
+ }
+
+ #login_logo {
+    max-height: 150px;
+    width: auto;
+    margin: 20px auto;
+    display: block;
+ }
