@@ -125,7 +125,8 @@ class Marketeering_Group_Dashboard_Admin
 		$turn_comments_off = get_option('turn_comments_off') === "on" ? true : false;
 		
 		if ($turn_comments_off) {
-			remove_menu_page('edit-comments.php');
+			remove_menu_page('edit-comments.php');									// Comments
+			remove_submenu_page('options-general.php', 'options-discussion.php');	// Settings > Discussion
 		}
 
 		// Hide user-submitted menu items
@@ -146,7 +147,6 @@ class Marketeering_Group_Dashboard_Admin
 
 			// submenu items
 			remove_submenu_page('themes.php', 'themes.php');
-			remove_submenu_page('index.php', 'simple_history_page');
 
 		}
 	}
