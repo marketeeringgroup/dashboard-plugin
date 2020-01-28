@@ -13,3 +13,8 @@
     margin: 20px auto;
     display: block;
  }
+
+ #hidden_menu_items {
+     min-width: 350px;
+     height: 300px;
+ }

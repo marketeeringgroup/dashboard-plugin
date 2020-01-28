@@ -128,6 +128,15 @@ class Marketeering_Group_Dashboard_Admin
 			remove_menu_page('edit-comments.php');
 		}
 
+		// Hide user-submitted menu items
+		$menu_items = get_option('hidden_menu_items');
+		$menu_items = explode("|", $menu_items);
+
+		foreach ($menu_items as $menu_item) {
+			$menu_item = trim($menu_item);
+			remove_menu_page($menu_item);
+		}
+
 		// Hide menu items for Editor role
 		if (current_user_can('editor')) {
 
@@ -208,6 +217,10 @@ class Marketeering_Group_Dashboard_Admin
 		// Show/Hide Comment Menu Item
 		add_option('turn_comments_off');
 		register_setting('mgdashboard_options_group', 'turn_comments_off');
+		
+		// Menu Items to Hide
+		add_option('hidden_menu_items');
+		register_setting('mgdashboard_options_group', 'hidden_menu_items');
 
 	}
 

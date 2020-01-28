@@ -18,9 +18,9 @@
     <?php screen_icon(); ?>
     <h1>Marketeering Group Dashboard Options</h1>
     <form method="post" action="options.php">
-        <?php 
-            settings_fields('mgdashboard_options_group'); 
-            $turn_comments_off = get_option('turn_comments_off') === "on" ? 'checked' : '';
+        <?php
+        settings_fields('mgdashboard_options_group');
+        $turn_comments_off = get_option('turn_comments_off') === "on" ? 'checked' : '';
         ?>
         <p>Select the image to be used on the WordPress Login screen.</p>
         <table>
@@ -38,12 +38,13 @@
                     } ?>
                 </td>
             </tr>
-            <tr valign="center">
-                <td>
-                    <input id="turn_comments_off" type="checkbox" name="turn_comments_off" <?php echo $turn_comments_off; ?> /><label for="turn_comments_off">Hide Comments in Admin Menu</label>
-                </td>
-            </tr>
         </table>
+        <hr>
+        <h2>Sidebar Menu Options</h2>
+        <input id="turn_comments_off" type="checkbox" name="turn_comments_off" <?php echo $turn_comments_off; ?> /><label for="turn_comments_off">Hide Comments in Admin Menu</label>
+        <h3>Hide Additional Menu Items</h3>
+        <label for="hidden_menu_items">Menu Items to Hide - Separate each URL with a |</label><br/>
+        <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea>
         <?php submit_button(); ?>
     </form>
 </div>
