@@ -118,19 +118,59 @@ class Marketeering_Group_Dashboard_Admin
 	public function hide_menus()
 	{
 		/**
-		 * Hides unnecessary menu options for Editors
+		 * Hides unnecessary menu options
 		 */
 
+		// Hide comments menu item for all users if setting is checked
+		$turn_comments_off = get_option('turn_comments_off') === "on" ? true : false;
+		
+		if ($turn_comments_off) {
+			remove_menu_page('edit-comments.php');									// Comments
+			remove_submenu_page('options-general.php', 'options-discussion.php');	// Settings > Discussion
+		}
+
+		// Hide user-submitted menu items
+		$menu_items = get_option('hidden_menu_items');
+		$menu_items = explode("|", $menu_items);
+
+		foreach ($menu_items as $menu_item) {
+			$menu_item = trim($menu_item);
+			remove_menu_page($menu_item);
+		}
+
+		// Hide menu items for Editor role
 		if (current_user_can('editor')) {
 
-			// Hide main sidebar menu items
+			// main menu items
 			remove_menu_page('tools.php');
 			remove_menu_page('vc-welcome');
 
-			// Hide main sidebar submenu items
+			// submenu items
 			remove_submenu_page('themes.php', 'themes.php');
-			remove_submenu_page('index.php', 'simple_history_page');
+
 		}
+	}
+
+	function remove_comment_support()
+	{
+		/**
+		 * Removes support for Comments
+		 * 
+		 */
+		
+		remove_post_type_support('post', 'comments');
+		remove_post_type_support('page', 'comments');
+	}
+
+	function remove_comments_admin_bar()
+	{
+		/**
+		 * Removes Comments icon in Admin Bar
+		 * 
+		 */
+
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu('comments');
 	}
 
 	public function remove_dashboard_meta()
@@ -191,9 +231,18 @@ class Marketeering_Group_Dashboard_Admin
 		 * 		string 		$option_name, 
 		 * 		array 		$args = array() )
 		 */
-
+		
+		// Login Logo
 		add_option('login_logo_url');
 		register_setting('mgdashboard_options_group', 'login_logo_url');
+
+		// Show/Hide Comment Menu Item
+		add_option('turn_comments_off');
+		register_setting('mgdashboard_options_group', 'turn_comments_off');
+		
+		// Menu Items to Hide
+		add_option('hidden_menu_items');
+		register_setting('mgdashboard_options_group', 'hidden_menu_items');
 
 	}
 

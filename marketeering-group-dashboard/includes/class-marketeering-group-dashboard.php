@@ -169,10 +169,15 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_options_page' );
 
 		// modify WordPress logo if option is set
-		if ( get_option('login_logo_url' )) {
+		if ( get_option( 'login_logo_url' )) {
 			$this->loader->add_action('login_enqueue_scripts', $plugin_admin, 'custom_login_logo' );
 		}
 
+		// disable comments if option is set
+		if ( get_option( 'turn_comments_off' )) {
+			$this->loader->add_action('init', $plugin_admin, 'remove_comment_support', 100);
+			$this->loader->add_action('wp_before_admin_bar_render', $plugin_admin, 'remove_comments_admin_bar', 100);
+		}
 	}
 
 	/**
