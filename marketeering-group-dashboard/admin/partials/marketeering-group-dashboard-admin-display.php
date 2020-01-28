@@ -40,9 +40,10 @@
             </tr>
         </table>
         <hr>
-        <h2>Sidebar Menu Options</h2>
-        <input id="turn_comments_off" type="checkbox" name="turn_comments_off" <?php echo $turn_comments_off; ?> /><label for="turn_comments_off">Hide Comments in Admin Menu</label>
-        <h3>Hide Additional Menu Items</h3>
+        <h2>Comments</h2>
+        <p><input id="turn_comments_off" type="checkbox" name="turn_comments_off" <?php echo $turn_comments_off; ?> /><label for="turn_comments_off">Disable Comments</label></p>
+        <hr>
+        <h2>Hide Additional Menu Items</h2>
         <label for="hidden_menu_items">Menu Items to Hide - Separate each URL with a |</label><br/>
         <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea>
         <?php submit_button(); ?>

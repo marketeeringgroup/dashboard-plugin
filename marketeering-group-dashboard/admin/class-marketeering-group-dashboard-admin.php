@@ -151,6 +151,28 @@ class Marketeering_Group_Dashboard_Admin
 		}
 	}
 
+	function remove_comment_support()
+	{
+		/**
+		 * Removes support for Comments
+		 * 
+		 */
+		
+		remove_post_type_support('post', 'comments');
+		remove_post_type_support('page', 'comments');
+	}
+
+	function remove_comments_admin_bar()
+	{
+		/**
+		 * Removes Comments icon in Admin Bar
+		 * 
+		 */
+
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu('comments');
+	}
+
 	public function remove_dashboard_meta()
 	{
 		/**
