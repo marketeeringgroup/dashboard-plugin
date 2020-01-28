@@ -6,7 +6,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       https://marketeeringgroup.com
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Marketeering_Group_Dashboard
  * @subpackage Marketeering_Group_Dashboard/public/partials

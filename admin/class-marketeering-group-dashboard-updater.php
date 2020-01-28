@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://marketeeringgroup.com
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Marketeering_Group_Dashboard
  * @subpackage Marketeering_Group_Dashboard/admin
@@ -26,7 +26,7 @@ class Marketeering_Group_Dashboard_Updater
     /**
      * The ID of this plugin.
      *
-     * @since    1.0.0
+     * @since    1.1.0
      * @access   private
      * @var      string    $marketeering_group_dashboard    The ID of this plugin.
      */
@@ -35,7 +35,7 @@ class Marketeering_Group_Dashboard_Updater
     /**
      * The version of this plugin.
      *
-     * @since    1.0.0
+     * @since    1.1.0
      * @access   private
      * @var      string    $version    The current version of this plugin.
      */

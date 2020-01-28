@@ -4,7 +4,7 @@
  * Fired during plugin deactivation
  *
  * @link       https://marketeeringgroup.com
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Marketeering_Group_Dashboard
  * @subpackage Marketeering_Group_Dashboard/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      1.1.0
  * @package    Marketeering_Group_Dashboard
  * @subpackage Marketeering_Group_Dashboard/includes
  * @author     Your Name <email@example.com>
@@ -27,7 +27,7 @@ class Marketeering_Group_Dashboard_Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 */
 	public static function deactivate() {
 
