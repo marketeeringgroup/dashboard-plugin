@@ -128,14 +128,14 @@ class Marketeering_Group_Dashboard_Admin
 			remove_menu_page('edit-comments.php');
 		}
 
-		// Hide menu options for Editor role
+		// Hide menu items for Editor role
 		if (current_user_can('editor')) {
 
-			// Hide main sidebar menu items
+			// main menu items
 			remove_menu_page('tools.php');
 			remove_menu_page('vc-welcome');
 
-			// Hide main sidebar submenu items
+			// submenu items
 			remove_submenu_page('themes.php', 'themes.php');
 			remove_submenu_page('index.php', 'simple_history_page');
 
