@@ -19,11 +19,21 @@
     <h1>Marketeering Group Dashboard Options</h1>
     <form method="post" action="options.php">
         <?php settings_fields('mgdashboard_options_group'); ?>
-        <p>Add the URL of the logo to be used on the WordPress login screen.</p>
+        <p>Select the image to be used on the WordPress Login screen.</p>
         <table>
-            <tr valign="top">
+            <tr valign="center">
                 <th scope="row"><label for="login_logo_url">Login Logo URL</label></th>
-                <td><input type="text" id="login_logo_url" name="login_logo_url" value="<?php echo get_option('login_logo_url'); ?>" /></td>
+                <td><input id="login_logo_url" type="text" name="login_logo_url" value="<?php echo get_option('login_logo_url'); ?>" />
+                    <input id="upload_image_button" type="button" class="button-primary" value="Insert Image" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <?php if (get_option('login_logo_url')) {
+                        echo '<img id="login_logo" src="' . get_option('login_logo_url') . '" />';
+                    } else {
+                        echo 'No image selected';
+                    } ?>
+                </td>
             </tr>
         </table>
         <?php submit_button(); ?>

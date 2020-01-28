@@ -28,5 +28,34 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
+	
+
+	/**
+	 * Adds Media Button to Settings Page
+	 */
+	console.log('testing');
+	
+	var mediaUploader;
+	console.log(mediaUploader);
+	$('#upload_image_button').click(function (e) {
+		e.preventDefault();
+		if (mediaUploader) {
+			mediaUploader.open();
+			console.log(mediaUploader)
+			return;
+		}
+		console.log('no media uploader');
+		mediaUploader = wp.media.frames.file_frame = wp.media({
+			title: 'Choose Image',
+			button: {
+				text: 'Choose Image'
+			}, multiple: false
+		});
+		mediaUploader.on('select', function () {
+			var attachment = mediaUploader.state().get('selection').first().toJSON();
+			$('#login_logo_url').val(attachment.url);
+		});
+		mediaUploader.open();
+	});
 
 })( jQuery );

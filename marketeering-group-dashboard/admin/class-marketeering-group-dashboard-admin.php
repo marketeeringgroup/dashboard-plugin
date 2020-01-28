@@ -98,7 +98,11 @@ class Marketeering_Group_Dashboard_Admin
 		 * class.
 		 */
 
-		wp_enqueue_script($this->marketeering_group_dashboard, plugin_dir_url(__FILE__) . 'js/marketeering-group-dashboard-admin.js', array('jquery'), $this->version, false);
+		// WordPress Media Scripts
+		wp_enqueue_media();
+
+		wp_enqueue_script($this->marketeering_group_dashboard, plugin_dir_url(__FILE__) . 'js/marketeering-group-dashboard-admin.js', array('jquery'), $this->version, true);
+
 	}
 
 	public function add_editor_capability()
@@ -190,6 +194,7 @@ class Marketeering_Group_Dashboard_Admin
 
 		add_option('login_logo_url');
 		register_setting('mgdashboard_options_group', 'login_logo_url');
+
 	}
 
 	public function register_options_page()
@@ -218,7 +223,12 @@ class Marketeering_Group_Dashboard_Admin
 	}
 
 	public function custom_login_logo()
-	{ ?>
+	{ 
+		/**
+		 * Adds custom logo to login screen 
+		 * 
+		 * */	
+	?>
 		<style type="text/css">
 			#login h1 a,
 			.login h1 a {
@@ -228,6 +238,6 @@ class Marketeering_Group_Dashboard_Admin
 				background-size: contain;
 			}
 		</style>
-<?php
+	<?php
 	}
 }
