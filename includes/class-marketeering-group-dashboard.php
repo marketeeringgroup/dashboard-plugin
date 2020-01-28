@@ -153,6 +153,7 @@ class Marketeering_Group_Dashboard {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Marketeering_Group_Dashboard_Admin( $this->get_marketeering_group_dashboard(), $this->get_version() );
+		$plugin_updater = new Marketeering_Group_Dashboard_Updater( $this->get_marketeering_group_dashboard(), $this->get_version() );
 
 		// enqueue scripts and styles
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -178,6 +179,10 @@ class Marketeering_Group_Dashboard {
 			$this->loader->add_action('init', $plugin_admin, 'remove_comment_support', 100);
 			$this->loader->add_action('wp_before_admin_bar_render', $plugin_admin, 'remove_comments_admin_bar', 100);
 		}
+
+		// updater 
+		$this->loader->add_action('admin_init', $plugin_updater, 'set_plugin_properties');
+
 	}
 
 	/**
