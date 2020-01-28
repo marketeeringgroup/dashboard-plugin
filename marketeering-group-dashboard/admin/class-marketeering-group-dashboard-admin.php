@@ -118,9 +118,17 @@ class Marketeering_Group_Dashboard_Admin
 	public function hide_menus()
 	{
 		/**
-		 * Hides unnecessary menu options for Editors
+		 * Hides unnecessary menu options
 		 */
 
+		// Hide comments menu item for all users if setting is checked
+		$turn_comments_off = get_option('turn_comments_off') === "on" ? true : false;
+		
+		if ($turn_comments_off) {
+			remove_menu_page('edit-comments.php');
+		}
+
+		// Hide menu options for Editor role
 		if (current_user_can('editor')) {
 
 			// Hide main sidebar menu items
@@ -130,6 +138,7 @@ class Marketeering_Group_Dashboard_Admin
 			// Hide main sidebar submenu items
 			remove_submenu_page('themes.php', 'themes.php');
 			remove_submenu_page('index.php', 'simple_history_page');
+
 		}
 	}
 
