@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       https://marketeeringgroup.com
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Marketeering_Group_Dashboard
  * @subpackage Marketeering_Group_Dashboard/includes
@@ -22,7 +22,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      1.1.0
  * @package    Marketeering_Group_Dashboard
  * @subpackage Marketeering_Group_Dashboard/includes
  * @author     Your Name <email@example.com>
@@ -33,7 +33,7 @@ class Marketeering_Group_Dashboard {
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   protected
 	 * @var      Marketeering_Group_Dashboard_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
@@ -42,7 +42,7 @@ class Marketeering_Group_Dashboard {
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   protected
 	 * @var      string    $marketeering_group_dashboard    The string used to uniquely identify this plugin.
 	 */
@@ -51,7 +51,7 @@ class Marketeering_Group_Dashboard {
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   protected
 	 * @var      string    $version    The current version of the plugin.
 	 */
@@ -64,13 +64,13 @@ class Marketeering_Group_Dashboard {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 */
 	public function __construct() {
 		if ( defined( 'MARKETEERING_GROUP_DASHBOARD_VERSION' ) ) {
 			$this->version = MARKETEERING_GROUP_DASHBOARD_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '1.1.0';
 		}
 		$this->marketeering_group_dashboard = 'marketeering-group-dashboard';
 
@@ -78,6 +78,7 @@ class Marketeering_Group_Dashboard {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->check_updates();
 
 	}
 
@@ -94,7 +95,7 @@ class Marketeering_Group_Dashboard {
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   private
 	 */
 	private function load_dependencies() {
@@ -122,6 +123,11 @@ class Marketeering_Group_Dashboard {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-marketeering-group-dashboard-public.php';
 
+		/**
+		 * The class responsible for defining all actions that occur in the updater area.
+		 */
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-marketeering-group-dashboard-updater.php';
+
 		$this->loader = new Marketeering_Group_Dashboard_Loader();
 
 	}
@@ -132,7 +138,7 @@ class Marketeering_Group_Dashboard {
 	 * Uses the Marketeering_Group_Dashboard_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   private
 	 */
 	private function set_locale() {
@@ -147,13 +153,12 @@ class Marketeering_Group_Dashboard {
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Marketeering_Group_Dashboard_Admin( $this->get_marketeering_group_dashboard(), $this->get_version() );
-		$plugin_updater = new Marketeering_Group_Dashboard_Updater( $this->get_marketeering_group_dashboard(), $this->get_version() );
 
 		// enqueue scripts and styles
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -181,7 +186,6 @@ class Marketeering_Group_Dashboard {
 		}
 
 		// updater 
-		$this->loader->add_action('admin_init', $plugin_updater, 'set_plugin_properties');
 
 	}
 
@@ -189,7 +193,7 @@ class Marketeering_Group_Dashboard {
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   private
 	 */
 	private function define_public_hooks() {
@@ -201,10 +205,23 @@ class Marketeering_Group_Dashboard {
 
 	}
 
+	private function check_updates() {
+
+		$plugin_updater = new Marketeering_Group_Dashboard_Updater($this->get_marketeering_group_dashboard(), $this->get_version(), plugin_dir_path(__FILE__));
+
+		$plugin_updater->set_username('marketeeringgroup'); 	// set username
+		$plugin_updater->set_repository('dashboard-plugin'); 	// set repo
+		$plugin_updater->authorize('aa7096ffad733e685c73478afcb616b278e9fde5'); 	// set repo
+		$plugin_updater->initialize(); 	
+
+		$this->loader->add_action('admin_init', $plugin_updater, 'set_plugin_properties');
+
+	}
+
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 */
 	public function run() {
 		$this->loader->run();
@@ -214,7 +231,7 @@ class Marketeering_Group_Dashboard {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
+	 * @since     1.1.0
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_marketeering_group_dashboard() {
@@ -224,7 +241,7 @@ class Marketeering_Group_Dashboard {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     1.1.0
 	 * @return    Marketeering_Group_Dashboard_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
@@ -234,11 +251,13 @@ class Marketeering_Group_Dashboard {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     1.1.0
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {
 		return $this->version;
 	}
+
+
 
 }
