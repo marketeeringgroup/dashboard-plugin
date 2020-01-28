@@ -191,9 +191,14 @@ class Marketeering_Group_Dashboard_Admin
 		 * 		string 		$option_name, 
 		 * 		array 		$args = array() )
 		 */
-
+		
+		// Login Logo
 		add_option('login_logo_url');
 		register_setting('mgdashboard_options_group', 'login_logo_url');
+
+		// Show/Hide Comment Menu Item
+		add_option('turn_comments_off');
+		register_setting('mgdashboard_options_group', 'turn_comments_off');
 
 	}
 
