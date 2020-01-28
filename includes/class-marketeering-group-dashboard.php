@@ -78,6 +78,7 @@ class Marketeering_Group_Dashboard {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->check_updates();
 
 	}
 
@@ -122,6 +123,11 @@ class Marketeering_Group_Dashboard {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-marketeering-group-dashboard-public.php';
 
+		/**
+		 * The class responsible for defining all actions that occur in the updater area.
+		 */
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-marketeering-group-dashboard-updater.php';
+
 		$this->loader = new Marketeering_Group_Dashboard_Loader();
 
 	}
@@ -153,7 +159,6 @@ class Marketeering_Group_Dashboard {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Marketeering_Group_Dashboard_Admin( $this->get_marketeering_group_dashboard(), $this->get_version() );
-		$plugin_updater = new Marketeering_Group_Dashboard_Updater( $this->get_marketeering_group_dashboard(), $this->get_version() );
 
 		// enqueue scripts and styles
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -181,7 +186,6 @@ class Marketeering_Group_Dashboard {
 		}
 
 		// updater 
-		$this->loader->add_action('admin_init', $plugin_updater, 'set_plugin_properties');
 
 	}
 
@@ -198,6 +202,19 @@ class Marketeering_Group_Dashboard {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+	}
+
+	private function check_updates() {
+
+		$plugin_updater = new Marketeering_Group_Dashboard_Updater($this->get_marketeering_group_dashboard(), $this->get_version(), plugin_dir_path(__FILE__));
+
+		$plugin_updater->set_username('marketeeringgroup'); 	// set username
+		$plugin_updater->set_repository('dashboard-plugin'); 	// set repo
+		$plugin_updater->authorize('aa7096ffad733e685c73478afcb616b278e9fde5'); 	// set repo
+		$plugin_updater->initialize(); 	
+
+		$this->loader->add_action('admin_init', $plugin_updater, 'set_plugin_properties');
 
 	}
 
@@ -240,5 +257,7 @@ class Marketeering_Group_Dashboard {
 	public function get_version() {
 		return $this->version;
 	}
+
+
 
 }
