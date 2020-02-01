@@ -1,16 +1,16 @@
 <?php
-
 /**
- * The admin-specific functionality of the plugin.
+ * Plugin Name:       Marketeering Group Dashboard
+ * Plugin URI:        https://github.com/marketeeringgroup/dashboard-plugin
+ * Description:       This plugin modifies the WordPress backend for client users with the Editor role.
+ * Version:           1.0.0
+ * Author:            Marketeering Group
+ * Author URI:        https://marketeeringgroup.com/
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       marketeering-group-dashboard
+ * Domain Path:       /languages
  *
- * @link       https://marketeeringgroup.com
- * @since      1.1.0
- *
- * @package    Marketeering_Group_Dashboard
- * @subpackage Marketeering_Group_Dashboard/admin
- */
-
-/**
  * The updater functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
@@ -26,7 +26,7 @@ class Marketeering_Group_Dashboard_Updater
     /**
      * The ID of this plugin.
      *
-     * @since    1.1.0
+     * @since    1.0.0
      * @access   private
      * @var      string    $marketeering_group_dashboard    The ID of this plugin.
      */
@@ -35,7 +35,7 @@ class Marketeering_Group_Dashboard_Updater
     /**
      * The version of this plugin.
      *
-     * @since    1.1.0
+     * @since    1.0.0
      * @access   private
      * @var      string    $version    The current version of this plugin.
      */
@@ -56,14 +56,15 @@ class Marketeering_Group_Dashboard_Updater
         $this->version = $version;
 
         $this->file = $file;
-        // return $this;
+        return $this;
     }
 
     public function set_plugin_properties()
     {
-        $this->plugin   = get_plugin_data($this->file);
-        $this->basename = plugin_basename($this->file);
-        $this->active   = is_plugin_active($this->basename);
+        $this->basename = plugin_basename(MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR);
+        $this->plugin   = get_plugin_data(MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR . $this->basename . '.php');
+        //$this->basename = plugin_basename($this->file);
+        $this->active   = is_plugin_active($this->basename . '/' . $this->basename . '.php');
     }
 
     public function set_username($username)
@@ -84,17 +85,26 @@ class Marketeering_Group_Dashboard_Updater
     private function get_repository_info()
     {
         if (is_null($this->github_response)) { // Do we have a response?
-            $request_uri = sprintf('https://api.github.com/repos/%s/%s/releases', $this->username, $this->repository); // Build URI
+            $request_uri = sprintf('https://api.github.com/repos/%s/%s/releases/latest', $this->username, $this->repository); // Build URI
+            
             if ($this->authorize_token) { // Is there an access token?
-                $request_uri = add_query_arg('access_token', $this->authorize_token, $request_uri); // Append it
+                //$request_uri = add_query_arg('access_token', $this->authorize_token, $request_uri); // Append it
+                $args = array(
+                    'headers' => array(
+                        'Authorization' => 'bearer ' . $this->authorize_token,
+                    )
+                );
             }
-            $response = json_decode(wp_remote_retrieve_body(wp_remote_get($request_uri)), true); // Get JSON and parse it
-            if (is_array($response)) { // If it is an array
-                $response = current($response); // Get the first item
-            }
-            if ($this->authorize_token) { // Is there an access token?
-                $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']); // Update our zip url with token
-            }
+            
+            $response = json_decode(wp_remote_retrieve_body(wp_remote_get($request_uri, $args)), true); // Get JSON and parse it
+            // if (is_array($response)) { // If it is an array
+            //     $response = current($response); // Get the first item
+            // }
+            
+            // if ($this->authorize_token) { // Is there an access token?
+            //     $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']); // Update our zip url with token
+            // }
+            
             $this->github_response = $response; // Set it to our property  
         }
     }
@@ -110,19 +120,20 @@ class Marketeering_Group_Dashboard_Updater
     {
 
         if (property_exists($transient, 'checked')) { // Check if transient has a checked property
-            if ($checked = $transient->checked) { // Did WordPress check for updates?
+            if ($transient->checked) { // Did WordPress check for updates?
                 $this->get_repository_info(); // Get the repo info
-                $out_of_date = version_compare($this->github_response['tag_name'], $checked[$this->basename], 'gt'); // Check if we're out of date
+                $out_of_date = version_compare($this->github_response['tag_name'], $this->version, 'gt'); // Check if we're out of date
                 if ($out_of_date) {
                     $new_files = $this->github_response['zipball_url']; // Get the ZIP
-                    $slug = current(explode('/', $this->basename)); // Create valid slug
+                    //$slug = current(explode('/', $this->basename)); // Create valid slug
+                    $slug = $this->basename;
                     $plugin = array( // setup our plugin info
                         'url' => $this->plugin["PluginURI"],
                         'slug' => $slug,
                         'package' => $new_files,
                         'new_version' => $this->github_response['tag_name']
                     );
-                    $transient->response[$this->basename] = (object) $plugin; // Return it in response
+                    $transient->response[$this->basename . '/' . $this->basename . '.php'] = (object) $plugin; // Return it in response
                 }
             }
         }
@@ -133,22 +144,23 @@ class Marketeering_Group_Dashboard_Updater
     {
         if (!empty($args->slug)) { // If there is a slug
             if ($args->slug == current(explode('/', $this->basename))) { // And it's our slug
+            // if ($args->slug == $this->basename) { // And it's our slug
                 $this->get_repository_info(); // Get our repo info
                 // Set it to an array
                 $plugin = array(
                     'name'              => $this->plugin["Name"],
                     'slug'              => $this->basename,
-                    'version'           => $this->github_response['tag_name'],
+                    'version'           => $this->github_response["tag_name"],
                     'author'            => $this->plugin["AuthorName"],
                     'author_profile'    => $this->plugin["AuthorURI"],
-                    'last_updated'      => $this->github_response['published_at'],
+                    'last_updated'      => $this->github_response["published_at"],
                     'homepage'          => $this->plugin["PluginURI"],
                     'short_description' => $this->plugin["Description"],
                     'sections'          => array(
                         'Description'   => $this->plugin["Description"],
-                        'Updates'       => $this->github_response['body'],
+                        'Updates'       => $this->github_response["body"],
                     ),
-                    'download_link'     => $this->github_response['zipball_url']
+                    'download_link'     => $this->github_response["zipball_url"]
                 );
                 return (object) $plugin; // Return the data
             }
@@ -160,7 +172,8 @@ class Marketeering_Group_Dashboard_Updater
     {
         global $wp_filesystem; // Get global FS object
 
-        $install_directory = plugin_dir_path($this->file); // Our plugin directory 
+        // $install_directory = plugin_dir_path($this->file); // Our plugin directory 
+        $install_directory = MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR; // Our plugin directory 
         $wp_filesystem->move($result['destination'], $install_directory); // Move files to the plugin dir
         $result['destination'] = $install_directory; // Set the destination for the rest of the stack
 

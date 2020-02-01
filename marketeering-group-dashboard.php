@@ -1,6 +1,16 @@
 <?php
-
 /**
+ * Plugin Name:       Marketeering Group Dashboard
+ * Plugin URI:        https://github.com/marketeeringgroup/dashboard-plugin
+ * Description:       This plugin modifies the WordPress backend for client users with the Editor role.
+ * Version:           1.0.0
+ * Author:            Marketeering Group
+ * Author URI:        https://marketeeringgroup.com/
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       marketeering-group-dashboard
+ * Domain Path:       /languages
+ * 
  * The plugin bootstrap file
  *
  * This file is read by WordPress to generate the plugin information in the plugin
@@ -9,20 +19,8 @@
  * that starts the plugin.
  *
  * @link              https://marketeeringgroup.com
- * @since             1.1.0
+ * @since             1.0.0
  * @package           Marketeering_Group_Dashboard
- *
- * @wordpress-plugin
- * Plugin Name:       Marketeering Group Dashboard
- * Plugin URI:        https://github.com/melmai/marketeering-group-dashboard
- * Description:       This plugin modifies the WordPress backend for client users with the Editor role.
- * Version:           1.1.0
- * Author:            Marketeering Group
- * Author URI:        https://marketeeringgroup.com/
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       marketeering-group-dashboard
- * Domain Path:       /languages
  */
 
 // If this file is called directly, abort.
@@ -32,10 +30,11 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Currently plugin version.
- * Start at version 1.1.0 and use SemVer - https://semver.org
+ * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'MARKETEERING_GROUP_DASHBOARD_VERSION', '1.1.0' );
+define( 'MARKETEERING_GROUP_DASHBOARD_VERSION', '1.0.0' );
+define( 'MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 
 /**
  * The code that runs during plugin activation.
@@ -71,7 +70,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-marketeering-group-dashboa
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.1.0
+ * @since    1.0.0
  */
 function run_marketeering_group_dashboard() {
 
