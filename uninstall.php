@@ -20,7 +20,7 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       https://marketeeringgroup.com
- * @since      1.1.0
+ * @since      1.0.0
  *
  * @package    Marketeering_Group_Dashboard
  */
@@ -45,3 +45,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 	// Login Logo
 	unregister_setting( 'mgdashboard_options_group', 'login_logo_url' );
+	unregister_setting( 'mgdashboard_options_group', 'turn_comments_off' );
+	unregister_setting( 'mgdashboard_options_group', 'hidden_menu_items' );

@@ -1,12 +1,24 @@
 <?php
 
 /**
+ * Plugin Name:       Marketeering Group Dashboard
+ * Plugin URI:        https://github.com/marketeeringgroup/dashboard-plugin
+ * Description:       This plugin modifies the WordPress backend for client users with the Editor role.
+ * Version:           1.0.0
+ * Author:            Marketeering Group
+ * Author URI:        https://marketeeringgroup.com/
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       marketeering-group-dashboard
+ * Domain Path:       /languages
+ */
+/**
  * Provide a admin area view for the plugin
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://marketeeringgroup.com
- * @since      1.1.0
+ * @since      1.0.0
  *
  * @package    Marketeering_Group_Dashboard
  * @subpackage Marketeering_Group_Dashboard/admin/partials
@@ -46,6 +58,7 @@
         <h2>Hide Additional Menu Items</h2>
         <label for="hidden_menu_items">Menu Items to Hide - Separate each URL with a |</label><br/>
         <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea>
+
         <?php submit_button(); ?>
     </form>
 </div>
