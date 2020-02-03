@@ -59,36 +59,6 @@
         <label for="hidden_menu_items">Menu Items to Hide - Separate each URL with a |</label><br/>
         <textarea id="hidden_menu_items" name="hidden_men u_items"><?php echo get_option('hidden_menu_items'); ?></textarea>
 
-        <?php
-
-        // $response = add_query_arg('access_token', 'd4fd6f81cf036b1f8ed5839476c43a080bb5ba0d', 'https://api.github.com/repos/marketeeringgroup/dashboard-plugin/zipball/1.1.0');
-        $request_uri = sprintf('https://api.github.com/repos/%s/%s/releases/latest', 'marketeeringgroup', 'dashboard-plugin'); // Build URI
-
-        // if ($this->authorize_token) { // Is there an access token?
-            //$request_uri = add_query_arg('access_token', $this->authorize_token, $request_uri); // Append it
-            $args = array(
-                'headers' => array(
-                    'Authorization' => 'bearer ' . 'd4fd6f81cf036b1f8ed5839476c43a080bb5ba0d',
-                )
-            );
-        // }
-
-        $response = json_decode(wp_remote_retrieve_body(wp_remote_get($request_uri, $args)), true);
-        $slug = current(explode('/', plugin_basename(__FILE__)));
-        $slug = explode('/', plugin_basename(__FILE__));
-
-        $plugin_path = MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR . $slug[0] . '.php';
-        $plugin = get_plugin_data(__FILE__);
-
-        $basename = plugin_basename(MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR);
-        //$basename = plugin_basename(__FILE__);
-
-        $is_active = is_plugin_active($basename . '/' . $basename . '.php');
-        echo '<pre>';
-        var_dump($is_active, $basename, $response, $plugin_path, $plugin);
-        echo '</pre>';
-
-        ?>
         <?php submit_button(); ?>
     </form>
 </div>
