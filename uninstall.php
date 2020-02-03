@@ -45,3 +45,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 	// Login Logo
 	unregister_setting( 'mgdashboard_options_group', 'login_logo_url' );
+	unregister_setting( 'mgdashboard_options_group', 'turn_comments_off' );
+	unregister_setting( 'mgdashboard_options_group', 'hidden_menu_items' );

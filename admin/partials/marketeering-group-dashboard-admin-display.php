@@ -57,7 +57,7 @@
         <hr>
         <h2>Hide Additional Menu Items</h2>
         <label for="hidden_menu_items">Menu Items to Hide - Separate each URL with a |</label><br/>
-        <textarea id="hidden_menu_items" name="hidden_men u_items"><?php echo get_option('hidden_menu_items'); ?></textarea>
+        <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea>
 
         <?php submit_button(); ?>
     </form>
