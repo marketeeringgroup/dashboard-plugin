@@ -127,7 +127,6 @@ class Marketeering_Group_Dashboard {
 		 * The class responsible for defining all actions that occur in the updater area.
 		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-marketeering-group-dashboard-updater.php';
-		// require_once plugin_dir_path(dirname(__FILE__)) . 'admin/plugin-update-checker/plugin-update-checker.php';
 
 		$this->loader = new Marketeering_Group_Dashboard_Loader();
 
@@ -203,9 +202,14 @@ class Marketeering_Group_Dashboard {
 
 	}
 
+	/**
+	 * Check for updates to plugin on Github Repository
+	 * 
+	 * @since 	1.2.0
+	 * @access	private
+	 */
 	private function check_updates() {
 
-		// $plugin_updater = new Marketeering_Group_Dashboard_Updater($this->get_marketeering_group_dashboard(), $this->get_version(), plugin_dir_path(__FILE__));
 		$plugin_updater = new Marketeering_Group_Dashboard_Updater($this->get_marketeering_group_dashboard(), $this->get_version(), MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR);
 		
 		$this->loader->add_action('admin_init', $plugin_updater, 'set_plugin_properties');
@@ -215,9 +219,6 @@ class Marketeering_Group_Dashboard {
 		$plugin_updater->authorize('d4fd6f81cf036b1f8ed5839476c43a080bb5ba0d'); 	// set auth token
 		$plugin_updater->initialize(); 	
 		
-		// $this->loader->add_filter('pre_set_site_transient_update_plugins', $plugin_updater, 'modify_transient', 10, 1);
-		// $this->loader->add_filter('plugins_api', $plugin_updater, 'plugin_popup', 10, 3);
-		// $this->loader->add_filter('upgrader_post_install', $plugin_updater, 'after_install', 10, 3);
 	}
 
 	/**

@@ -54,7 +54,6 @@ class Marketeering_Group_Dashboard_Updater
     {
         $this->marketeering_group_dashboard = $marketeering_group_dashboard;
         $this->version = $version;
-
         $this->file = $file;
         return $this;
     }
@@ -63,7 +62,6 @@ class Marketeering_Group_Dashboard_Updater
     {
         $this->basename = plugin_basename(MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR);
         $this->plugin   = get_plugin_data(MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR . $this->basename . '.php');
-        //$this->basename = plugin_basename($this->file);
         $this->active   = is_plugin_active($this->basename . '/' . $this->basename . '.php');
     }
 
@@ -88,7 +86,7 @@ class Marketeering_Group_Dashboard_Updater
             $request_uri = sprintf('https://api.github.com/repos/%s/%s/releases/latest', $this->username, $this->repository); // Build URI
             
             if ($this->authorize_token) { // Is there an access token?
-                //$request_uri = add_query_arg('access_token', $this->authorize_token, $request_uri); // Append it
+                // add access token to header
                 $args = array(
                     'headers' => array(
                         'Authorization' => 'bearer ' . $this->authorize_token,
