@@ -199,6 +199,7 @@ class Marketeering_Group_Dashboard_Admin
 	{
 		/**
 		 * Adds Marketeering Group customer support widget
+		 * 
 		 */
 		wp_add_dashboard_widget(
 			'marketeering_dashboard_widget', 	// Widget slug.

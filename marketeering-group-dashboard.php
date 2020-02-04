@@ -3,7 +3,7 @@
  * Plugin Name:       Marketeering Group Dashboard
  * Plugin URI:        https://github.com/marketeeringgroup/dashboard-plugin
  * Description:       This plugin modifies the WordPress backend for client users with the Editor role.
- * Version:           1.0.0
+ * Version:           1.2.0
  * Author:            Marketeering Group
  * Author URI:        https://marketeeringgroup.com/
  * License:           GPL-2.0+
@@ -33,8 +33,9 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'MARKETEERING_GROUP_DASHBOARD_VERSION', '1.0.0' );
+define( 'MARKETEERING_GROUP_DASHBOARD_VERSION', '1.2.0' );
 define( 'MARKETEERING_GROUP_DASHBOARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
+define( 'MARKETEERING_GROUP_DASHBOARD_PLUGIN_MAIN_FILE', 'marketeering-group-dashboard/marketeering-group-dashboard.php');
 
 /**
  * The code that runs during plugin activation.
