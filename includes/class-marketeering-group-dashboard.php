@@ -216,7 +216,6 @@ class Marketeering_Group_Dashboard {
 
 		$plugin_updater->set_username('marketeeringgroup'); 						// set username
 		$plugin_updater->set_repository('dashboard-plugin'); 						// set repo
-		$plugin_updater->authorize('d4fd6f81cf036b1f8ed5839476c43a080bb5ba0d'); 	// set auth token
 		$plugin_updater->initialize(); 	
 		
 	}

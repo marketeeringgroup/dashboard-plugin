@@ -99,9 +99,9 @@ class Marketeering_Group_Dashboard_Updater
             //     $response = current($response); // Get the first item
             // }
             
-            // if ($this->authorize_token) { // Is there an access token?
-            //     $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']); // Update our zip url with token
-            // }
+            if ($this->authorize_token) { // Is there an access token?
+                $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']); // Update our zip url with token
+            }
             
             $this->github_response = $response; // Set it to our property  
         }
