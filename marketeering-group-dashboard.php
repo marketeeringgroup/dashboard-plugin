@@ -3,7 +3,7 @@
  * Plugin Name:       Marketeering Group Dashboard
  * Plugin URI:        https://github.com/marketeeringgroup/dashboard-plugin
  * Description:       This plugin modifies the WordPress backend for client users with the Editor role.
- * Version:           1.2.0
+ * Version:           1.1.1
  * Author:            Marketeering Group
  * Author URI:        https://marketeeringgroup.com/
  * License:           GPL-2.0+
