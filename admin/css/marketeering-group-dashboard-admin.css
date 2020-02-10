@@ -14,7 +14,7 @@
     display: block;
  }
 
- #hidden_menu_items {
+ #hidden_menu_items, #hidden_editor_menu_items {
      min-width: 350px;
      height: 300px;
  }

@@ -43,7 +43,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * Unregister custom settings from database
  */
 
-	// Login Logo
-	unregister_setting( 'mgdashboard_options_group', 'login_logo_url' );
-	unregister_setting( 'mgdashboard_options_group', 'turn_comments_off' );
-	unregister_setting( 'mgdashboard_options_group', 'hidden_menu_items' );
+	unregister_setting( 'mgdashboard_options_group', 'login_logo_url' );		// Login Logo
+	unregister_setting( 'mgdashboard_options_group', 'turn_comments_off' );		// Comments
+	unregister_setting( 'mgdashboard_options_group', 'hidden_menu_items' );		// Menu Items to hide for all users
+	unregister_setting( 'mgdashboard_options_group', 'hidden_editor_menu_items' );		// Menu Items to hide for editor users

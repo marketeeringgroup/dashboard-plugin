@@ -129,7 +129,7 @@ class Marketeering_Group_Dashboard_Admin
 			remove_submenu_page('options-general.php', 'options-discussion.php');	// Settings > Discussion
 		}
 
-		// Hide user-submitted menu items
+		// Hide user-submitted menu items for all users
 		$menu_items = get_option('hidden_menu_items');
 		$menu_items = explode("|", $menu_items);
 
@@ -139,11 +139,20 @@ class Marketeering_Group_Dashboard_Admin
 		}
 
 		// Hide menu items for Editor role
+		$editor_menu_items = get_option('hidden_editor_menu_items');
+		$editor_menu_items = explode("|", $editor_menu_items);
+
 		if (current_user_can('editor')) {
 
 			// main menu items
 			remove_menu_page('tools.php');
 			remove_menu_page('vc-welcome');
+
+			// user-specified menu items
+			foreach ($editor_menu_items as $editor_menu_item) {
+				$editor_menu_item = trim($editor_menu_item);
+				remove_menu_page($editor_menu_item);
+			}
 
 			// submenu items
 			remove_submenu_page('themes.php', 'themes.php');
@@ -241,9 +250,13 @@ class Marketeering_Group_Dashboard_Admin
 		add_option('turn_comments_off');
 		register_setting('mgdashboard_options_group', 'turn_comments_off');
 		
-		// Menu Items to Hide
+		// Menu Items to Hide for all users
 		add_option('hidden_menu_items');
 		register_setting('mgdashboard_options_group', 'hidden_menu_items');
+		
+		// Menu Items to Hide for Editors
+		add_option('hidden_editor_menu_items');
+		register_setting('mgdashboard_options_group', 'hidden_editor_menu_items');
 
 	}
 

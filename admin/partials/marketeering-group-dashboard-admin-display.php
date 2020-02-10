@@ -56,8 +56,11 @@
         <p><input id="turn_comments_off" type="checkbox" name="turn_comments_off" <?php echo $turn_comments_off; ?> /><label for="turn_comments_off">Disable Comments</label></p>
         <hr>
         <h2>Hide Additional Menu Items</h2>
-        <label for="hidden_menu_items">Menu Items to Hide - Separate each URL with a |</label><br/>
-        <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea>
+        <p><label for="hidden_menu_items">Menu Items to Hide for <strong>ALL</strong> users - Separate each URL with a |</label><br/>
+        <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea></p>
+        
+        <p><label for="hidden_editor_menu_items">Menu Items to Hide for <strong>EDITOR</strong> users - Separate each URL with a |</label><br/>
+        <textarea id="hidden_editor_menu_items" name="hidden_editor_menu_items"><?php echo get_option('hidden_editor_menu_items'); ?></textarea></p>
 
         <?php submit_button(); ?>
     </form>
