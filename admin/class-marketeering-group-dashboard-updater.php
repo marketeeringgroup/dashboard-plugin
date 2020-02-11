@@ -101,8 +101,11 @@ class Marketeering_Group_Dashboard_Updater
 
     public function initialize()
     {
-        add_filter('pre_set_site_transient_update_plugins', array($this, 'modify_transient'), 10, 1);
         add_filter('plugins_api', array($this, 'plugin_popup'), 10, 3);
+        add_filter('pre_set_site_transient_update_plugins', array($this, 'modify_transient'), 10, 1);
+        add_filter('pre_set_transient_update_plugins', array($this, 'modify_transient'), 10, 1);
+        add_filter('site_transient_update_plugins', array($this, 'update_state'));
+        add_filter('transient_update_plugins', array($this, 'update_state'));
         add_filter('upgrader_post_install', array($this, 'after_install'), 10, 3);
     }
 
@@ -155,6 +158,56 @@ class Marketeering_Group_Dashboard_Updater
             }
         }
         return $result; // Otherwise return default
+    }
+
+    /**
+     * Force the plugin state to be updated.
+     *
+     * @since 1.2.1
+     *
+     * @param object $transient The saved value of the `update_plugins` site transient.
+     * @return object
+     */
+    public function update_state($transient)
+    {
+        $state = $this->state();
+        return $transient;
+    }
+
+    /**
+     * Set the plugin state.
+     *
+     * @since 1.2.1
+     *
+     * @return string
+     */
+    public function state()
+    {
+        $option         = 'mg_dashboard_state';
+        $active_plugins = apply_filters('active_plugins', get_option('active_plugins'));
+        // We also have to check network activated plugins. Otherwise this plugin won't update on multisite.
+        $active_sitewide_plugins = get_option('active_sitewide_plugins');
+        if (!is_array($active_plugins)) {
+            $active_plugins = array();
+        }
+        if (!is_array($active_sitewide_plugins)) {
+            $active_sitewide_plugins = array();
+        }
+        $active_plugins = array_merge($active_plugins, $active_sitewide_plugins);
+        if (in_array('marketeering-group-dashboard/marketeering-group-dashboard.php', $active_plugins)) {
+            $state = 'activated';
+            update_option($option, $state);
+        } else {
+            $state = 'install';
+            update_option($option, $state);
+            foreach (array_keys(get_plugins()) as $plugin) {
+                if (strpos($plugin, 'marketeering-group-dashboard.php') !== false) {
+                    $state = 'deactivated';
+                    update_option($option, $state);
+                }
+            }
+        }
+        return $state;
     }
 
     public function after_install($response, $hook_extra, $result)
