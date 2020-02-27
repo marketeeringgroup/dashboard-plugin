@@ -20,6 +20,34 @@
     display: block;
  }
 
+ /* ###################################                 
+ #            Admin Toolbar           #
+ # ################################# */
+
+ /* Style Contact Support Link in Admin Bar  */
+#wpadminbar #wp-admin-bar-mg-support-link {
+    background-color: #ff7b22;
+    color: #f7f7f7;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Match the default background color for button on hover */
+#wpadminbar #wp-admin-bar-mg-support-link:hover,
+#wpadminbar #wp-admin-bar-mg-support-link:hover .ab-item {
+    background-color: rgb(50,55,60);
+    text-shadow: 0 0 2px blue;
+}
+
+/* Style the button text */
+#wpadminbar #wp-admin-bar-mg-support-link .ab-item {
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 0 0 2px #777;
+}
+
 /* ###################################                 
 #     MG Dashboard Settings Page     #
 # ################################# */

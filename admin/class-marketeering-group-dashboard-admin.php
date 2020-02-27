@@ -130,6 +130,21 @@ class Marketeering_Group_Dashboard_Admin
 		}
 	}
 
+	public function add_admin_bar_items() 
+	{
+
+		global $wp_admin_bar;
+
+		$wp_admin_bar->add_node(array(
+			'id'    => 'mg-support-link',
+			'title' => 'Contact Tech Support',
+			'href'  => 'mailto:siteupdates@marketeeringgroup.com',
+			'meta'  => array(
+				'title' => __('Contact Tech Support'),
+			),
+		));
+	}
+
 	public function hide_menus()
 	{
 		/**
