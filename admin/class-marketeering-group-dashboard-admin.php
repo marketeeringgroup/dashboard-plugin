@@ -115,6 +115,20 @@ class Marketeering_Group_Dashboard_Admin
 		$role->add_cap('edit_theme_options');
 	}
 
+	public function add_seo_manager_capability()
+	{
+		/**
+		 * Adds access to the Yoast file editor for the SEO Manager role
+		 */
+		if (!get_role('wpseo_manager')) return;
+		$role = get_role('wpseo_manager');
+
+		if (!$role->capabilities["wpseo_manage_redirects"]) $role->add_cap('wpseo_manage_redirects');
+		if (!$role->capabilities["edit_files"]) $role->add_cap('edit_files');
+
+		//return apply_filters('wpseo_allow_system_file_edit', true);
+	}
+
 	public function hide_menus()
 	{
 		/**

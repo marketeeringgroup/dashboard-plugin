@@ -64,4 +64,10 @@
 
         <?php submit_button(); ?>
     </form>
+
+    <?php $role = get_role('wpseo_manager'); ?>
+
+    <pre>
+        <?php var_dump($role);?>
+    </pre>
 </div>
