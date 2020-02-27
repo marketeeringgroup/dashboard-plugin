@@ -110,7 +110,7 @@ class Marketeering_Group_Dashboard_Admin
 		/**
 		 * Adds access to the appearance menu for the Editor role
 		 */
-		
+
 		$role = get_role('editor');
 		if ($role->capabilities["edit_theme_options"]) return;
 		$role->add_cap('edit_theme_options');
@@ -124,6 +124,10 @@ class Marketeering_Group_Dashboard_Admin
 
 		global $wp_admin_bar;
 		$wp_admin_bar->remove_menu('wp-logo');
+
+		if (current_user_can('editor')) {
+			$wp_admin_bar->remove_menu('simple-history-view-history');
+		}
 	}
 
 	public function hide_menus()
