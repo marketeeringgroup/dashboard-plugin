@@ -3,10 +3,16 @@
  * included in this file.
  */
 
+/* ###################################                 
+#             Login Page             #   
+#  ################################ */
+
+ /* Increase width of logo space */
  #login_logo_url {
-     min-width:300px;
+     min-width: 300px;
  }
 
+ /* Contain logo */
  #login_logo {
     max-height: 150px;
     width: auto;
@@ -14,6 +20,11 @@
     display: block;
  }
 
+/* ###################################                 
+#     MG Dashboard Settings Page     #
+# ################################# */
+
+ /* Increase width of text area */
  #hidden_menu_items, #hidden_editor_menu_items {
      min-width: 350px;
      height: 300px;
