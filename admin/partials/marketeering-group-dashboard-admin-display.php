@@ -25,7 +25,7 @@
         <p>Select the image to be used on the WordPress Login screen.</p>
         <table>
             <tr valign="center">
-                <th scope="row"><label for="login_logo_url">Login Logo URL</label></th>
+                <th scope="row"><label for="login_logo_url">Login Logo</label></th>
                 <td><input id="login_logo_url" type="text" name="login_logo_url" value="<?php echo get_option('login_logo_url'); ?>" />
                     <input id="upload_image_button" type="button" class="button-primary" value="Insert Image" /></td>
             </tr>
