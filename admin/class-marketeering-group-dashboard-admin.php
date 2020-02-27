@@ -116,7 +116,7 @@ class Marketeering_Group_Dashboard_Admin
 		$role->add_cap('edit_theme_options');
 	}
 
-	public function remove_admin_bar_logo() 
+	public function remove_admin_bar_items() 
 	{
 		/**
 		 * Removes WordPress logo from Admin bar
