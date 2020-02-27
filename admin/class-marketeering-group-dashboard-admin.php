@@ -153,23 +153,24 @@ class Marketeering_Group_Dashboard_Admin
 		}
 
 		// Hide menu items for Editor role
-		$editor_menu_items = get_option('hidden_editor_menu_items');
-		$editor_menu_items = explode("|", $editor_menu_items);
+		$editor_menu_items = get_option('hidden_editor_menu_items');	// get user-submitted menu items
+		$editor_menu_items = explode("|", $editor_menu_items);			// create array
 
 		if (current_user_can('editor')) {
 
 			// main menu items
-			remove_menu_page('tools.php');
-			remove_menu_page('vc-welcome');
+			remove_menu_page('tools.php');		// Tools
+			remove_menu_page('vc-welcome');		// WP Bakery
 
 			// user-specified menu items
-			foreach ($editor_menu_items as $editor_menu_item) {
+			foreach ($editor_menu_items as $editor_menu_item) {			
 				$editor_menu_item = trim($editor_menu_item);
 				remove_menu_page($editor_menu_item);
 			}
 
 			// submenu items
-			remove_submenu_page('themes.php', 'themes.php');
+			remove_submenu_page('themes.php', 'themes.php');			// Theme Selection
+			remove_submenu_page('index.php', 'simple_history_page');	// Simple History
 
 		}
 	}
