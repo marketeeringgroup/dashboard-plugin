@@ -33,18 +33,14 @@
 	/**
 	 * Adds Media Button to Settings Page
 	 */
-	console.log('testing');
 	
 	var mediaUploader;
-	console.log(mediaUploader);
 	$('#upload_image_button').click(function (e) {
 		e.preventDefault();
 		if (mediaUploader) {
 			mediaUploader.open();
-			console.log(mediaUploader)
 			return;
 		}
-		console.log('no media uploader');
 		mediaUploader = wp.media.frames.file_frame = wp.media({
 			title: 'Choose Image',
 			button: {

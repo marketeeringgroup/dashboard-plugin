@@ -127,12 +127,14 @@ class Marketeering_Group_Dashboard_Admin
 
 		if (current_user_can('editor')) {
 			$wp_admin_bar->remove_menu('simple-history-view-history');
-		}
+    }
 	}
 
 	public function add_admin_bar_items() 
 	{
-
+    /**
+		 * Adds Contact Tech Support button to toolbar
+		 */
 		global $wp_admin_bar;
 
 		$wp_admin_bar->add_node(array(
@@ -147,7 +149,24 @@ class Marketeering_Group_Dashboard_Admin
 
 	public function modify_footer_text()
 	{
+    /**
+		 * Adds customized footer text
+		 */
 		echo '<span id="footer-note">Customized by your friends at <a href="https://marketeeringgroup.com/" target="_blank">Marketeering Group</a>.</span>';
+  }
+  
+	public function add_seo_manager_capability()
+	{
+		/**
+		 * Adds access to the Yoast file editor for the SEO Manager role
+		 */
+		if (!get_role('wpseo_manager')) return;
+		$role = get_role('wpseo_manager');
+
+		if (!$role->capabilities["wpseo_manage_redirects"]) $role->add_cap('wpseo_manage_redirects');
+		if (!$role->capabilities["edit_files"]) $role->add_cap('edit_files');
+
+		//return apply_filters('wpseo_allow_system_file_edit', true);
 	}
 
 	public function hide_menus()
@@ -174,23 +193,24 @@ class Marketeering_Group_Dashboard_Admin
 		}
 
 		// Hide menu items for Editor role
-		$editor_menu_items = get_option('hidden_editor_menu_items');
-		$editor_menu_items = explode("|", $editor_menu_items);
+		$editor_menu_items = get_option('hidden_editor_menu_items');	// get user-submitted menu items
+		$editor_menu_items = explode("|", $editor_menu_items);			// create array
 
 		if (current_user_can('editor')) {
 
 			// main menu items
-			remove_menu_page('tools.php');
-			remove_menu_page('vc-welcome');
+			remove_menu_page('tools.php');		// Tools
+			remove_menu_page('vc-welcome');		// WP Bakery
 
 			// user-specified menu items
-			foreach ($editor_menu_items as $editor_menu_item) {
+			foreach ($editor_menu_items as $editor_menu_item) {			
 				$editor_menu_item = trim($editor_menu_item);
 				remove_menu_page($editor_menu_item);
 			}
 
 			// submenu items
-			remove_submenu_page('themes.php', 'themes.php');
+			remove_submenu_page('themes.php', 'themes.php');			// Theme Selection
+			remove_submenu_page('index.php', 'simple_history_page');	// Simple History
 
 		}
 	}
