@@ -125,7 +125,7 @@ class Marketeering_Group_Dashboard_Admin
 		global $wp_admin_bar;
 		$wp_admin_bar->remove_menu('wp-logo');
 
-		if (current_user_can('editor')) {
+		if (!current_user_can('manage_options')) {
 			$wp_admin_bar->remove_menu('simple-history-view-history');
     }
 	}
@@ -196,7 +196,7 @@ class Marketeering_Group_Dashboard_Admin
 		$editor_menu_items = get_option('hidden_editor_menu_items');	// get user-submitted menu items
 		$editor_menu_items = explode("|", $editor_menu_items);			// create array
 
-		if (current_user_can('editor')) {
+		if (!current_user_can('manage_options')) {
 
 			// main menu items
 			remove_menu_page('tools.php');		// Tools
