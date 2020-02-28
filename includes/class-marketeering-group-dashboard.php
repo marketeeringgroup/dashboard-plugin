@@ -164,12 +164,16 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		// modify editor capabilities and views
+		// modify capabilities and views
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_editor_capability' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_seo_manager_capability' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'hide_menus' );
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'remove_dashboard_meta' );
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'add_custom_dashboard_widgets' );
+		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'remove_admin_bar_items' );
+		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'add_admin_bar_items', 9999 );
+		$this->loader->add_filter( 'admin_footer_text', $plugin_admin, 'modify_footer_text' );
+
 
 		// create settings page
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );

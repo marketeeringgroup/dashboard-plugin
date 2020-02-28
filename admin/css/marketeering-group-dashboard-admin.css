@@ -3,10 +3,16 @@
  * included in this file.
  */
 
+/* ###################################                 
+#             Login Page             #   
+#  ################################ */
+
+ /* Increase width of logo space */
  #login_logo_url {
-     min-width:300px;
+     min-width: 300px;
  }
 
+ /* Contain logo */
  #login_logo {
     max-height: 150px;
     width: auto;
@@ -14,6 +20,46 @@
     display: block;
  }
 
+ /* ###################################                 
+ #            Admin Toolbar           #
+ # ################################# */
+
+ /* Style Contact Support Link in Admin Bar  */
+#wpadminbar #wp-admin-bar-mg-support-link {
+    background-color: #ff7b22;
+    color: #f7f7f7;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Match the default background color for button on hover */
+#wpadminbar #wp-admin-bar-mg-support-link:hover,
+#wpadminbar #wp-admin-bar-mg-support-link:hover .ab-item {
+    background-color: rgb(50,55,60);
+    text-shadow: 0 0 2px blue;
+}
+
+/* Add dashicon to button */
+#wpadminbar #wp-admin-bar-mg-support-link .ab-item:before {
+    content: '\f466';
+    top: 3px;
+    color: #f7f7f7;
+}
+
+/* Style the button text */
+#wpadminbar #wp-admin-bar-mg-support-link .ab-item {
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 0 0 2px #777;
+}
+
+/* ###################################                 
+#     MG Dashboard Settings Page     #
+# ################################# */
+
+ /* Increase width of text area */
  #hidden_menu_items, #hidden_editor_menu_items {
      min-width: 350px;
      height: 300px;

@@ -110,11 +110,51 @@ class Marketeering_Group_Dashboard_Admin
 		/**
 		 * Adds access to the appearance menu for the Editor role
 		 */
+
 		$role = get_role('editor');
 		if ($role->capabilities["edit_theme_options"]) return;
 		$role->add_cap('edit_theme_options');
 	}
 
+	public function remove_admin_bar_items() 
+	{
+		/**
+		 * Removes WordPress logo from Admin bar
+		 */
+
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu('wp-logo');
+
+		if (current_user_can('editor')) {
+			$wp_admin_bar->remove_menu('simple-history-view-history');
+    }
+	}
+
+	public function add_admin_bar_items() 
+	{
+    /**
+		 * Adds Contact Tech Support button to toolbar
+		 */
+		global $wp_admin_bar;
+
+		$wp_admin_bar->add_node(array(
+			'id'    => 'mg-support-link',
+			'title' => 'Contact Tech Support',
+			'href'  => 'mailto:siteupdates@marketeeringgroup.com',
+			'meta'  => array(
+				'title' =>  __('Contact Tech Support'),
+			),
+		));
+	}
+
+	public function modify_footer_text()
+	{
+    /**
+		 * Adds customized footer text
+		 */
+		echo '<span id="footer-note">Customized by your friends at <a href="https://marketeeringgroup.com/" target="_blank">Marketeering Group</a>.</span>';
+  }
+  
 	public function add_seo_manager_capability()
 	{
 		/**
