@@ -140,9 +140,14 @@ class Marketeering_Group_Dashboard_Admin
 			'title' => 'Contact Tech Support',
 			'href'  => 'mailto:siteupdates@marketeeringgroup.com',
 			'meta'  => array(
-				'title' => __('Contact Tech Support'),
+				'title' =>  __('Contact Tech Support'),
 			),
 		));
+	}
+
+	public function modify_footer_text()
+	{
+		echo '<span id="footer-note">Customized by your friends at <a href="https://marketeeringgroup.com/" target="_blank">Marketeering Group</a>.</span>';
 	}
 
 	public function hide_menus()

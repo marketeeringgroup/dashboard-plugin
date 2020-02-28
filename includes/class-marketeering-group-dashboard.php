@@ -171,6 +171,7 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'add_custom_dashboard_widgets' );
 		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'remove_admin_bar_items' );
 		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'add_admin_bar_items', 9999 );
+		$this->loader->add_filter( 'admin_footer_text', $plugin_admin, 'modify_footer_text' );
 
 
 		// create settings page

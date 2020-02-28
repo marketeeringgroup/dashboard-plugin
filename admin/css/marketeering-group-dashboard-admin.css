@@ -41,6 +41,13 @@
     text-shadow: 0 0 2px blue;
 }
 
+/* Add dashicon to button */
+#wpadminbar #wp-admin-bar-mg-support-link .ab-item:before {
+    content: '\f466';
+    top: 3px;
+    color: #f7f7f7;
+}
+
 /* Style the button text */
 #wpadminbar #wp-admin-bar-mg-support-link .ab-item {
     text-transform: uppercase;
