@@ -21,6 +21,7 @@
         <?php
         settings_fields('mgdashboard_options_group');
         $turn_comments_off = get_option('turn_comments_off') === "on" ? 'checked' : '';
+        $enable_staging_notice = get_option('enable_staging_notice') === "on" ? 'checked' : '';
         ?>
         <p>Select the image to be used on the WordPress Login screen.</p>
         <table>
@@ -40,15 +41,18 @@
             </tr>
         </table>
         <hr>
+        <h2>Admin Notices</h2>
+        <p><input id="enable_staging_notice" type="checkbox" name="enable_staging_notice" <?php echo $enable_staging_notice; ?> /><label for="enable_staging_notice">Enable Staging Site Notice</label></p>
+        <hr>
         <h2>Comments</h2>
         <p><input id="turn_comments_off" type="checkbox" name="turn_comments_off" <?php echo $turn_comments_off; ?> /><label for="turn_comments_off">Disable Comments</label></p>
         <hr>
         <h2>Hide Additional Menu Items</h2>
-        <p><label for="hidden_menu_items">Menu Items to Hide for <strong>ALL</strong> users - Separate each URL with a |</label><br/>
-        <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea></p>
-        
-        <p><label for="hidden_editor_menu_items">Menu Items to Hide for <strong>EDITOR</strong> users - Separate each URL with a |</label><br/>
-        <textarea id="hidden_editor_menu_items" name="hidden_editor_menu_items"><?php echo get_option('hidden_editor_menu_items'); ?></textarea></p>
+        <p><label for="hidden_menu_items">Menu Items to Hide for <strong>ALL</strong> users - Separate each URL with a |</label><br />
+            <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea></p>
+
+        <p><label for="hidden_editor_menu_items">Menu Items to Hide for <strong>EDITOR</strong> users - Separate each URL with a |</label><br />
+            <textarea id="hidden_editor_menu_items" name="hidden_editor_menu_items"><?php echo get_option('hidden_editor_menu_items'); ?></textarea></p>
 
         <?php submit_button(); ?>
     </form>
