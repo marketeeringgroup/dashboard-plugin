@@ -175,7 +175,9 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_filter( 'admin_footer_text', $plugin_admin, 'modify_footer_text' );
 
 		// add dashboard notice
-		$this->loader->add_action('admin_notices', $plugin_admin, 'add_staging_site_warning');
+		if ( get_option( 'enable_staging_notice' )) {
+			$this->loader->add_action('admin_notices', $plugin_admin, 'add_staging_site_warning');
+		}
 
 		// create settings page
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
