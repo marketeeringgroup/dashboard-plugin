@@ -313,6 +313,8 @@ class Marketeering_Group_Dashboard_Admin
 		add_option('hidden_editor_menu_items');
 		register_setting('mgdashboard_options_group', 'hidden_editor_menu_items');
 
+		// Show Staging Site Notice
+
 	}
 
 	public function register_options_page()
