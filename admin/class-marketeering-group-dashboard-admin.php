@@ -358,5 +358,17 @@ class Marketeering_Group_Dashboard_Admin
 		</style>
 	<?php
 	}
+
+	public function add_staging_site_warning() {
+		/**
+		 * Adds notice to dashboard that the staging site is currently being worked on
+		 * 
+		 */
+
+		$class = 'notice notice-error';
+		$message = __('WARNING! The staging site is currently being modified! Please check in with the Development Team before making changes to the live site.', 'sample-text-domain');
+
+		printf('<div class="%1$s"><p style="font-size: 1.2em;">%2$s</p></div>', esc_attr($class), esc_html($message));
+	}
 	
 }

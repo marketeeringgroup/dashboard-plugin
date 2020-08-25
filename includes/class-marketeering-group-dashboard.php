@@ -174,6 +174,8 @@ class Marketeering_Group_Dashboard {
 		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'add_admin_bar_items', 9999 );
 		$this->loader->add_filter( 'admin_footer_text', $plugin_admin, 'modify_footer_text' );
 
+		// add dashboard notice
+		$this->loader->add_action('admin_notices', $plugin_admin, 'add_staging_site_warning');
 
 		// create settings page
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
