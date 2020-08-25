@@ -301,6 +301,10 @@ class Marketeering_Group_Dashboard_Admin
 		add_option('login_logo_url');
 		register_setting('mgdashboard_options_group', 'login_logo_url');
 
+		// Show/Hide Staging Admin Notice
+		add_option('enable_staging_notice');
+		register_setting('mgdashboard_options_group', 'enable_staging_notice');
+		
 		// Show/Hide Comment Menu Item
 		add_option('turn_comments_off');
 		register_setting('mgdashboard_options_group', 'turn_comments_off');
@@ -312,8 +316,6 @@ class Marketeering_Group_Dashboard_Admin
 		// Menu Items to Hide for Editors
 		add_option('hidden_editor_menu_items');
 		register_setting('mgdashboard_options_group', 'hidden_editor_menu_items');
-
-		// Show Staging Site Notice
 
 	}
 
