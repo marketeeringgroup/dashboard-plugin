@@ -48,3 +48,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	unregister_setting( 'mgdashboard_options_group', 'turn_comments_off' );				// Comments
 	unregister_setting( 'mgdashboard_options_group', 'hidden_menu_items' );				// Menu Items to hide for all users
 	unregister_setting( 'mgdashboard_options_group', 'hidden_editor_menu_items' );		// Menu Items to hide for editor users
+	unregister_setting( 'mgdashboard_options_group', 'analytics_head' );				// Google Analytics Head
+	unregister_setting( 'mgdashboard_options_group', 'analytics_body' );				// Google Analytics Head
