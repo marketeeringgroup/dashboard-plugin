@@ -193,6 +193,15 @@ class Marketeering_Group_Dashboard {
 			$this->loader->add_action('init', $plugin_admin, 'remove_comment_support', 100);
 			$this->loader->add_action('wp_before_admin_bar_render', $plugin_admin, 'remove_comments_admin_bar', 100);
 		}
+
+		// add google analytics/tag manager code to head and body
+		if (get_option('analytics_head')) {
+			$this->loader->add_action('wp_head', $plugin_admin, 'add_analytics_head');
+		}
+
+		if (get_option('analytics_body')) {
+			$this->loader->add_action('wp_body_open', $plugin_admin, 'add_analytics_body');
+		}
 	}
 
 	/**

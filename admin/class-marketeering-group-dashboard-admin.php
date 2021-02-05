@@ -317,6 +317,13 @@ class Marketeering_Group_Dashboard_Admin
 		add_option('hidden_editor_menu_items');
 		register_setting('mgdashboard_options_group', 'hidden_editor_menu_items');
 
+		// Add Google Analytics/Tag Manager (Head)
+		add_option('analytics_head');
+		register_setting('mgdashboard_options_group', 'analytics_head');
+
+		// Add Google Analytics/Tag Manager (Body)
+		add_option('analytics_body');
+		register_setting('mgdashboard_options_group', 'analytics_body');
 	}
 
 	public function register_options_page()
@@ -373,6 +380,20 @@ class Marketeering_Group_Dashboard_Admin
 		$message = __('WARNING! The staging site is currently being modified! Please check in with the Development Team before making changes to the live site.', 'sample-text-domain');
 
 		printf('<div class="%1$s"><p style="font-size: 1.2em;">%2$s</p></div>', esc_attr($class), esc_html($message));
+	}
+
+	public function add_analytics_head() {
+		/**
+		 * Adds Google Analytics/Tag Manager code to the head section
+		 */
+		echo get_option( 'analytics_head' );
+	}
+
+	public function add_analytics_body() {
+		/**
+		 * Adds Google Analytics/Tag Manager code to the body section
+		 */
+		echo get_option( 'analytics_body' );
 	}
 	
 }

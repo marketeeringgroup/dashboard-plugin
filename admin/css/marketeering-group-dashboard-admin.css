@@ -60,7 +60,8 @@
 # ################################# */
 
  /* Increase width of text area */
- #hidden_menu_items, #hidden_editor_menu_items {
+ .mg-settings-textbox {
+     width: 50%;
      min-width: 350px;
      height: 300px;
  }

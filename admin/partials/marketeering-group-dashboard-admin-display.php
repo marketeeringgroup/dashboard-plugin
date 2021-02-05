@@ -15,7 +15,7 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div>
-    <?php screen_icon(); ?>
+    <?php //screen_icon(); ?>
     <h1>Marketeering Group Dashboard Options</h1>
     <form method="post" action="options.php">
         <?php
@@ -49,10 +49,17 @@
         <hr>
         <h2>Hide Additional Menu Items</h2>
         <p><label for="hidden_menu_items">Menu Items to Hide for <strong>ALL</strong> users - Separate each URL with a |</label><br />
-            <textarea id="hidden_menu_items" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea></p>
+            <textarea id="hidden_menu_items" class="mg-settings-textbox" name="hidden_menu_items"><?php echo get_option('hidden_menu_items'); ?></textarea></p>
 
         <p><label for="hidden_editor_menu_items">Menu Items to Hide for <strong>EDITOR</strong> users - Separate each URL with a |</label><br />
-            <textarea id="hidden_editor_menu_items" name="hidden_editor_menu_items"><?php echo get_option('hidden_editor_menu_items'); ?></textarea></p>
+            <textarea id="hidden_editor_menu_items" class="mg-settings-textbox" name="hidden_editor_menu_items"><?php echo get_option('hidden_editor_menu_items'); ?></textarea></p>
+        <hr>
+        <h2>Google Analytics/Tag Manager</h2>
+        <p><label for="analytics_head">Head</label><br />
+            <textarea id="analytics_head" class="mg-settings-textbox" name="analytics_head"><?php echo get_option('analytics_head'); ?></textarea></p>
+
+        <p><label for="analytics_body">Body</label><br />
+            <textarea id="analytics_body" class="mg-settings-textbox" name="analytics_body"><?php echo get_option('analytics_body'); ?></textarea></p>
 
         <?php submit_button(); ?>
     </form>
